@@ -184,12 +184,12 @@ class Migration(migrations.Migration):
             name='StartOfAuthorityRecord',
             fields=[
                 ('record_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='dnsmanager.Record')),
-                ('mname', models.CharField(help_text='Primary master name server for this zone.', max_length=253, validators=[django.core.validators.RegexValidator(message='Not a valid domain name', regex='(?:[a-zA-Z0-9][a-zA-Z0-9-]{0,62}(?<!-)\\.)*(?:[a-zA-Z0-9][a-zA-Z0-9-]{0,62}(?<!-))')], verbose_name='master name server')),
+                ('mname', models.CharField(help_text='Primary main name server for this zone.', max_length=253, validators=[django.core.validators.RegexValidator(message='Not a valid domain name', regex='(?:[a-zA-Z0-9][a-zA-Z0-9-]{0,62}(?<!-)\\.)*(?:[a-zA-Z0-9][a-zA-Z0-9-]{0,62}(?<!-))')], verbose_name='main name server')),
                 ('rname', models.EmailField(help_text='Email address of the administrator responsible for this zone.', max_length=254, verbose_name='responsible email')),
-                ('serial', models.BigIntegerField(help_text='A slave name server will initiate a zone transfer if this serial is incremented.', verbose_name='serial number')),
-                ('refresh', models.BigIntegerField(default=86400, help_text='Number of seconds after which secondary name servers should query the master to detect zone changes.', verbose_name='refresh')),
-                ('retry', models.BigIntegerField(default=7200, help_text='Number of seconds after which secondary name servers should retry to request the serial number from the master if the master does not respond.', verbose_name='retry')),
-                ('expire', models.BigIntegerField(default=3600000, help_text='Number of seconds after which secondary name servers should stop answering request for this zone if the master does not respond.', verbose_name='expire')),
+                ('serial', models.BigIntegerField(help_text='A subordinate name server will initiate a zone transfer if this serial is incremented.', verbose_name='serial number')),
+                ('refresh', models.BigIntegerField(default=86400, help_text='Number of seconds after which secondary name servers should query the main to detect zone changes.', verbose_name='refresh')),
+                ('retry', models.BigIntegerField(default=7200, help_text='Number of seconds after which secondary name servers should retry to request the serial number from the main if the main does not respond.', verbose_name='retry')),
+                ('expire', models.BigIntegerField(default=3600000, help_text='Number of seconds after which secondary name servers should stop answering request for this zone if the main does not respond.', verbose_name='expire')),
                 ('minimum', models.BigIntegerField(default=172800, help_text='Time to live for purposes of negative caching.', verbose_name='minimum')),
             ],
             options={

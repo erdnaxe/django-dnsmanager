@@ -394,8 +394,8 @@ class StartOfAuthorityRecord(Record):
     mname = models.CharField(
         max_length=253,
         validators=[domain_name_validator],
-        verbose_name=_("master name server"),
-        help_text=_("Primary master name server for this zone."),
+        verbose_name=_("main name server"),
+        help_text=_("Primary main name server for this zone."),
     )
     rname = models.EmailField(
         verbose_name=_("responsible email"),
@@ -406,27 +406,27 @@ class StartOfAuthorityRecord(Record):
     # e.g. 2017031405 (5th change from 14th march 2017)
     serial = models.BigIntegerField(
         verbose_name=_("serial number"),
-        help_text=_("A slave name server will initiate a zone transfer if "
+        help_text=_("A subordinate name server will initiate a zone transfer if "
                     "this serial is incremented."),
     )
     refresh = models.BigIntegerField(
         verbose_name=_("refresh"),
         help_text=_("Number of seconds after which secondary name servers "
-                    "should query the master to detect zone changes."),
+                    "should query the main to detect zone changes."),
         default=86400,
     )
     retry = models.BigIntegerField(
         verbose_name=_("retry"),
         help_text=_("Number of seconds after which secondary name servers "
                     "should retry to request the serial number from the "
-                    "master if the master does not respond."),
+                    "main if the main does not respond."),
         default=7200,
     )
     expire = models.BigIntegerField(
         verbose_name=_("expire"),
         help_text=_("Number of seconds after which secondary name servers "
                     "should stop answering request for this zone if the "
-                    "master does not respond."),
+                    "main does not respond."),
         default=3600000,
     )
     minimum = models.BigIntegerField(

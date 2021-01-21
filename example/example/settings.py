@@ -26,7 +26,7 @@ SECRET_KEY = '$!-7^wl#wjifjbh)5@f7ji%x!vp7s1vzbvwt27hxv$idixq0u0'
 DEBUG = True
 
 ADMINS = (
-    #('Admin', 'webmaster@example.com'),
+    #('Admin', 'webmain@example.com'),
 )
 
 SITE_ID = 1
